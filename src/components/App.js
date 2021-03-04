@@ -10,14 +10,10 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 
-     function App() {
+function App() {
   const [cards, setCards] = React.useState([]);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(
-    false
-  );
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(
-    false
-  );
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
@@ -127,41 +123,20 @@ import AddPlacePopup from "./AddPlacePopup";
         )}
 
         {isEditProfilePopupOpen && (
-          <EditProfilePopup
-            isOpen={isEditProfilePopupOpen}
-            onClose={closeAllPopups}
-            onUpdateUser={handleUpdateUser}
-          />
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
         )}
 
         {isAddPlacePopupOpen && (
-          <AddPlacePopup
-            isOpen={isAddPlacePopupOpen}
-            onClose={closeAllPopups}
-            onAddPlace={handleAddPlace}
-          />
+          <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} />
         )}
 
-        <PopupWithForm
-          name="delete"
-          title="Are you sure?"
-          isOpen={false}
-          onClose={closeAllPopups}
-        >
-          <button
-            className="popup__button"
-            type="submit"
-            aria-label="Delete card"
-          >
+        <PopupWithForm name="delete" title="Are you sure?" isOpen={false} onClose={closeAllPopups}>
+          <button className="popup__button" type="submit" aria-label="Delete card">
             Yes
           </button>
         </PopupWithForm>
 
-        <ImagePopup
-          name="image"
-          card={selectedCard}
-          onClose={closeAllPopups}
-        ></ImagePopup>
+        <ImagePopup name="image" card={selectedCard} onClose={closeAllPopups}></ImagePopup>
       </CurrentUserContext.Provider>
     </div>
   );
