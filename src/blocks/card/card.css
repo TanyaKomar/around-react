@@ -9,7 +9,7 @@
 @import url(./__btn-delete/_hidden/card__btn-delete_hidden.css);
 
 .card {
-    background-color: #fff;
-    border-radius: 10px;
-    position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
 }
