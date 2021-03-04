@@ -63,6 +63,10 @@ class Api {
 
     }
 
+    changeLikeCardStatus(cardID, isLiked) {
+        return isLiked ? this.addLike(cardID) : this.removeLike(cardID)
+    }
+
     setUserInfo({ name, about }) {
         return fetch(this._baseUrl + "/users/me", {
             method: "PATCH",
