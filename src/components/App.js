@@ -37,16 +37,22 @@ function App() {
     setSelectedCard(false);
   }
   function handleUpdateUser({ name, about }) {
-    api.setUserInfo({ name, about }).then((res) => {
-      setCurrentUser(res);
-      closeAllPopups();
-    });
+    api
+      .setUserInfo({ name, about })
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((error) => console.error(error));
   }
   function handleUpdateAvatar({ avatar }) {
-    api.setUserAvatar({ avatar }).then((res) => {
-      setCurrentUser(res);
-      closeAllPopups();
-    });
+    api
+      .setUserAvatar({ avatar })
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((error) => console.error(error));
   }
 
   React.useEffect(() => {
@@ -55,18 +61,21 @@ function App() {
       .then((res) => {
         setCurrentUser(res);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       });
   }, []);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
-      setCards(newCards);
-    });
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
+        setCards(newCards);
+      })
+      .catch((error) => console.error(error));
   }
 
   function handleCardDelete(card) {
@@ -75,8 +84,8 @@ function App() {
       .then(() => {
         setCards(cards.filter((c) => c._id !== card._id));
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       });
   }
 
@@ -87,16 +96,19 @@ function App() {
         console.log(cards);
         setCards(cards);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
       });
   }, []);
 
   function handleAddPlace({ name, link }) {
-    api.addCard({ name, link }).then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    });
+    api
+      .addCard({ name, link })
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((error) => console.error(error));
   }
 
   return (
