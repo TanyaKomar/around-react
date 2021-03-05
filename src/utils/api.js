@@ -25,9 +25,7 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({ name, link }),
-    })
-      .then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)))
-      .catch((err) => console.log("err", err));
+    }).then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)));
   }
 
   removeCard(cardID) {
@@ -41,18 +39,14 @@ class Api {
     return fetch(this._baseUrl + `/cards/likes/${cardID}`, {
       method: "PUT",
       headers: this._headers,
-    })
-      .then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)))
-      .catch((err) => console.log("err", err));
+    }).then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)));
   }
 
   removeLike(cardID) {
     return fetch(this._baseUrl + `/cards/likes/${cardID}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)))
-      .catch((err) => console.log("err", err));
+    }).then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)));
   }
 
   changeLikeCardStatus(cardID, isLiked) {
@@ -64,13 +58,9 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ name: name, about: about }),
-    })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`);
-      })
-      .catch((err) => {
-        return Promise.reject(err);
-      });
+    }).then((res) => {
+      return res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`);
+    });
   }
 
   setUserAvatar({ avatar }) {
@@ -78,9 +68,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ avatar: avatar }),
-    })
-      .then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)))
-      .catch((err) => console.log("err", err));
+    }).then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)));
   }
 }
 
